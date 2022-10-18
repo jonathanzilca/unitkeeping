@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">UnitKeeping</string>
+    <string name="unitkeeping">UnitKeeping</string>
+    <string name="background">background</string>
+    <string name="rotate">ROTATE</string>
+    <string name="smartphone">SMARTPHONE</string>
+    <string name="amountof"><u>סוג רצועות פתיחה:</u></string>
+    <string name="amountofpackage"><u>כמות מארזים:</u></string>
+    <string name="amountofinspected"><u>מבוקרים:</u></string>
+    <string name="amountofreleaser"><u>כמות מנתקים:</u></string>
+</resources>

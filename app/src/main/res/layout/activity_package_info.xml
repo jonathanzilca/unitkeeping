@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:background="#2B2B2B">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="600dp"
+            android:layout_height="46sp"
+            android:background="@drawable/button_stroke"
+            android:fontFamily="monospace"
+            android:gravity="center"
+            android:padding="4sp"
+            android:text="@string/unitkeeping"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Spinner
+            android:id="@+id/packageType"
+            android:layout_width="315dp"
+            android:layout_height="38dp"
+
+            android:layout_marginTop="70dp"
+            android:background="@drawable/spinner_style"
+            android:paddingLeft="35dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:paddingRight="5dp"
+            android:textSize="18dp"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/weight"
+            android:layout_width="315dp"
+            android:layout_height="38dp"
+            android:layout_marginTop="28dp"
+            android:ems="10"
+            android:hint="משקל"
+            android:paddingRight="10dp"
+            android:inputType="numberDecimal"
+            android:drawableEnd="@drawable/ic_weight"
+            android:background="@drawable/custom_input"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#FFFFFF"
+            android:textSize="18dp"
+            android:textDirection="rtl"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintTop_toBottomOf="@+id/packageType" />
+
+        <Spinner
+            android:id="@+id/releaserType"
+            android:layout_width="315dp"
+            android:layout_height="38dp"
+            android:layout_marginTop="28dp"
+            android:background="@drawable/spinner_style"
+            android:paddingLeft="35dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:paddingRight="5dp"
+            android:textSize="18dp"
+            android:textDirection="rtl"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintTop_toBottomOf="@+id/weight" />
+
+        <AutoCompleteTextView
+            android:id="@+id/releaserInspector"
+            android:layout_width="150sp"
+            android:layout_height="46dp"
+            android:layout_marginTop="28dp"
+            android:ems="10"
+            android:paddingRight="10dp"
+            android:hint="מבקר המנתק"
+            android:drawableEnd="@drawable/ic_inspector"
+            android:background="@drawable/custom_input"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#FFFFFF"
+            android:textSize="18dp"
+            android:textDirection="rtl"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintTop_toBottomOf="@+id/releaserType" />
+
+
+        <EditText
+            android:id="@+id/releaserExpirationDate"
+            android:layout_width="150sp"
+            android:layout_height="46dp"
+            android:layout_marginHorizontal="5sp"
+            android:layout_marginEnd="8dp"
+            android:ems="10"
+            android:drawableEnd="@drawable/ic_btter_calander"
+            android:focusable="false"
+            android:paddingRight="10dp"
+            android:hint="תאריך ביקורת"
+            android:inputType="number"
+            android:background="@drawable/custom_input"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#FFFFFF"
+            android:textSize="18dp"
+            android:textDirection="rtl"
+            android:textIsSelectable="false"
+            app:layout_constraintBottom_toBottomOf="@+id/releaserInspector"
+            app:layout_constraintEnd_toStartOf="@+id/releaserInspector"
+            app:layout_constraintTop_toTopOf="@+id/releaserInspector" />
+
+        <Spinner
+            android:id="@+id/openingStrap"
+            android:layout_width="315dp"
+            android:layout_height="38dp"
+            android:textDirection="rtl"
+            android:background="@drawable/spinner_style"
+            android:paddingLeft="35dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:paddingRight="5dp"
+            android:textSize="18dp"
+            android:layout_marginTop="28dp"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintTop_toBottomOf="@+id/releaserInspector" />
+
+        <EditText
+            android:id="@+id/parachuteSerialNumber"
+            android:layout_width="150dp"
+            android:layout_height="46dp"
+            android:layout_marginTop="28dp"
+            android:ems="10"
+            android:paddingRight="10dp"
+            android:hint="מספר מצנח"
+            android:drawableEnd="@drawable/ic_numbers"
+            android:inputType="number"
+            android:background="@drawable/custom_input"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#FFFFFF"
+            android:textSize="18dp"
+            android:textDirection="rtl"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintTop_toBottomOf="@+id/openingStrap" />
+
+        <EditText
+            android:id="@+id/parachuteExpiration"
+            android:layout_width="150sp"
+            android:layout_height="46dp"
+            android:layout_marginHorizontal="5sp"
+            android:layout_marginTop="28dp"
+            android:layout_marginEnd="8dp"
+            android:ems="10"
+            android:drawableEnd="@drawable/ic_btter_calander"
+            android:paddingRight="10dp"
+            android:focusable="false"
+            android:hint="תאריך אריזה"
+            android:inputType="number"
+            android:background="@drawable/custom_input"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#FFFFFF"
+            android:textSize="18dp"
+            android:textDirection="rtl"
+            android:textIsSelectable="false"
+            app:layout_constraintEnd_toStartOf="@+id/parachuteSerialNumber"
+            app:layout_constraintTop_toBottomOf="@+id/openingStrap" />
+
+        <LinearLayout
+            android:id="@+id/layoutParachute"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layoutDirection="rtl"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="@+id/parachuteSerialNumber"
+            app:layout_constraintStart_toStartOf="@+id/parachuteSerialNumber"
+            app:layout_constraintTop_toBottomOf="@+id/parachuteSerialNumber">
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layoutParachuteDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layoutDirection="rtl"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="@+id/parachuteExpiration"
+            app:layout_constraintStart_toStartOf="@+id/parachuteExpiration"
+            app:layout_constraintTop_toBottomOf="@+id/parachuteExpiration"></LinearLayout>
+
+        <EditText
+            android:id="@+id/segmanSerialNumber"
+            android:layout_width="150dp"
+            android:layout_height="46dp"
+            android:layout_marginTop="8dp"
+            android:ems="10"
+            android:paddingRight="10dp"
+            android:hint="מספר סגמן"
+            android:inputType="number"
+            android:drawableEnd="@drawable/ic_numbers"
+            android:background="@drawable/custom_input"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#FFFFFF"
+            android:textSize="18dp"
+            android:textDirection="rtl"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintTop_toBottomOf="@+id/layoutParachute" />
+
+        <EditText
+            android:id="@+id/segmanExpiration"
+            android:layout_width="150sp"
+            android:layout_height="46dp"
+            android:layout_marginHorizontal="5sp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:ems="10"
+            android:paddingRight="10dp"
+            android:focusable="false"
+            android:drawableEnd="@drawable/ic_btter_calander"
+            android:hint="תאריך אריזה"
+            android:inputType="number"
+            android:background="@drawable/custom_input"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#FFFFFF"
+            android:textSize="18dp"
+            android:textDirection="rtl"
+            android:textIsSelectable="false"
+            app:layout_constraintEnd_toStartOf="@+id/segmanSerialNumber"
+            app:layout_constraintTop_toBottomOf="@+id/layoutParachute" />
+
+        <Switch
+            android:id="@+id/switch1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layoutDirection="rtl"
+            android:text="מבוקר"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:textSize="17dp"
+
+            android:textDirection="rtl"
+            app:layout_constraintStart_toStartOf="@+id/guideline2"
+            app:layout_constraintTop_toBottomOf="@+id/segmanSerialNumber" />
+
+        <AutoCompleteTextView
+            android:id="@+id/inspectorName"
+            android:layout_width="150sp"
+            android:layout_height="46dp"
+            android:layout_marginTop="24dp"
+            android:ems="10"
+            android:hint="שם המבקר"
+            android:paddingRight="10dp"
+            android:drawableEnd="@drawable/ic_inspector"
+            android:background="@drawable/custom_input"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#FFFFFF"
+            android:textSize="18dp"
+            android:textDirection="rtl"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintTop_toBottomOf="@+id/switch1" />
+
+        <EditText
+            android:id="@+id/inspectorExpiration"
+            android:layout_width="150sp"
+            android:layout_height="46dp"
+            android:layout_marginHorizontal="5sp"
+            android:layout_marginEnd="8dp"
+            android:drawableEnd="@drawable/ic_btter_calander"
+            android:background="@drawable/custom_input"
+            android:ems="10"
+            android:focusable="false"
+            android:paddingRight="10dp"
+            android:hint="תאריך ביקורת"
+            android:inputType="number"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#FFFFFF"
+            android:textDirection="rtl"
+            android:textIsSelectable="false"
+            android:textSize="18dp"
+            app:layout_constraintBottom_toBottomOf="@+id/inspectorName"
+            app:layout_constraintEnd_toStartOf="@+id/inspectorName"
+            app:layout_constraintTop_toTopOf="@+id/inspectorName" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.93" />
+
+        <Button
+            android:id="@+id/approve"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/button_stroke"
+            android:text="עדכן"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintHorizontal_bias="0.386"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/inspectorName"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <Button
+            android:id="@+id/delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/button_stroke"
+            android:text="מחק"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintHorizontal_bias="0.314"
+            app:layout_constraintStart_toEndOf="@+id/approve"
+            app:layout_constraintTop_toBottomOf="@+id/inspectorName"
+            app:layout_constraintVertical_bias="0.0" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+</ScrollView>
