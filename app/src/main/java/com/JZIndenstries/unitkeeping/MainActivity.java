@@ -1,35 +1,23 @@
 package com.JZIndenstries.unitkeeping;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
-import android.app.Dialog;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
+
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TableRow;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.android.material.tabs.TabLayout;
-import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity implements View.OnLongClickListener , View.OnClickListener {
@@ -39,8 +27,6 @@ public class MainActivity extends AppCompatActivity implements View.OnLongClickL
 //    rovad12 = 3;
 //    firefly = 4;
     int counterBtn = 0 ;
-    String[] packageType = {"a22","treevol","kloov","rovad8","rovad12","firefly"};
-    String[] packageReleaserType = {"FXC","5000","M1","M2","2stages","Nati"};
     Button[] buttonsLeft = new Button[51];
     Button[] buttonsRight = new Button[51];
     TextView headLine;
@@ -54,9 +40,6 @@ public class MainActivity extends AppCompatActivity implements View.OnLongClickL
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-//        ActionBar actionBar = getSupportActionBar(); // removing the action bar
-//        actionBar.hide();
-//        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#000000"))); // removing the support bar
         getWindow().setStatusBarColor(Color.parseColor("#000000"));
         Configuration configuration = getResources().getConfiguration();
         configuration.setLayoutDirection(new Locale("en"));
@@ -143,15 +126,14 @@ public class MainActivity extends AppCompatActivity implements View.OnLongClickL
         String path = "https://unitkeeping-b1db9-default-rtdb.europe-west1.firebasedatabase.app";
         FirebaseDatabase database = FirebaseDatabase.getInstance(path);
         databaseReference = database.getReference();
-        LoadingDialog loadingDialog = new LoadingDialog(MainActivity.this);
-        loadingDialog.showLoadingDialog(MainActivity.this);
-        loadingDialog.dismissLoadingDialog(MainActivity.this);
+
         for (int i =1 ; i< 51 ; i++){
             String buttonIDLeft = "PackageL" + i;
             String buttonIDRight = "PackageR" + i;
             int t = i;
             databaseReference.child(PackageIdRC1).child(buttonIDRight).get().addOnCompleteListener(task -> {
                 if (!task.isSuccessful()) {
+                    Loading();
                 }
                 else {
                     PackageModel packageModel = task.getResult().getValue(PackageModel.class);
@@ -163,6 +145,7 @@ public class MainActivity extends AppCompatActivity implements View.OnLongClickL
             });
             databaseReference.child(PackageIdLC1).child(buttonIDLeft).get().addOnCompleteListener(task -> {
                 if (!task.isSuccessful()) {
+                    Loading();
 
                 }
                 else {
@@ -173,11 +156,6 @@ public class MainActivity extends AppCompatActivity implements View.OnLongClickL
                     packageModelsL.add(packageModel);
                 }
             });
-
-            if(t==50){
-                loadingDialog.dismissLoadingDialog(MainActivity.this);
-            }
-
 
         }
 
@@ -200,7 +178,7 @@ public class MainActivity extends AppCompatActivity implements View.OnLongClickL
             buttonsRight[pos].setScaleY(10);
             TableRow.LayoutParams params = (TableRow.LayoutParams) buttonsLeft[pos].getLayoutParams();
             params.setMargins(2000,2000,2000,2000);
-            buttonsRight[pos].setPadding(000,2000,000,2000);
+            buttonsRight[pos].setPadding(0,2000,0,2000);
 
 
         }
@@ -226,5 +204,12 @@ public class MainActivity extends AppCompatActivity implements View.OnLongClickL
 
 
         return true;
+    }
+
+    void Loading(){
+        LoadingDialog loadingDialog = new LoadingDialog(MainActivity.this);
+        loadingDialog.showLoadingDialog(MainActivity.this);
+        loadingDialog.dismissLoadingDialog(MainActivity.this);
+
     }
 }

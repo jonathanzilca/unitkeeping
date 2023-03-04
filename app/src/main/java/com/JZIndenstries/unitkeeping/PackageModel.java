@@ -4,8 +4,6 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
 
 public class PackageModel implements Parcelable {
     int id;
@@ -27,6 +25,8 @@ public class PackageModel implements Parcelable {
     String packageInspector;
     ArrayList<Integer> packageParachuteSerialNumberHeavy;
     ArrayList<String> packageParachuteExpirationDateHeavy;
+    String boardExpirationDate;
+    String boardInspector;
 
     boolean packageApproved;
     public PackageModel(){
@@ -50,7 +50,7 @@ public class PackageModel implements Parcelable {
         this.packageApproved = packageApproved;
     }
 
-    public PackageModel(int id, String packageType, int packageWeight, String packageReleaser, String packageReleaserExpirationDate, String packageReleaserInspector, int packageOpeningStrap, int packageParachuteSerialNumber, String packageParachuteExpirationDate, int packageParachuteOpenerSerialNumber, String packageParachuteOpenerExpirationDate, String packageExpirationDate, String packageInspector, ArrayList<Integer> packageParachuteSerialNumberHeavy, ArrayList<String> packageParachuteExpirationDateHeavy, boolean packageApproved) {
+    public PackageModel(int id, String packageType, int packageWeight, String packageReleaser, String packageReleaserExpirationDate, String packageReleaserInspector, int packageOpeningStrap, int packageParachuteSerialNumber, String packageParachuteExpirationDate, int packageParachuteOpenerSerialNumber, String packageParachuteOpenerExpirationDate, String packageExpirationDate, String packageInspector, ArrayList<Integer> packageParachuteSerialNumberHeavy, ArrayList<String> packageParachuteExpirationDateHeavy,String boardExpirationDate ,String boardInspector, boolean packageApproved) {
         this.id = id;
         this.packageType = packageType;
         this.packageWeight = packageWeight;
@@ -64,9 +64,27 @@ public class PackageModel implements Parcelable {
         this.packageParachuteOpenerExpirationDate = packageParachuteOpenerExpirationDate;
         this.packageExpirationDate = packageExpirationDate;
         this.packageInspector = packageInspector;
+        this.boardExpirationDate = boardExpirationDate;
+        this.boardInspector = boardInspector;
         this.packageParachuteSerialNumberHeavy = packageParachuteSerialNumberHeavy;
         this.packageParachuteExpirationDateHeavy = packageParachuteExpirationDateHeavy;
         this.packageApproved = packageApproved;
+    }
+
+    public String getBoardExpirationDate() {
+        return boardExpirationDate;
+    }
+
+    public void setBoardExpirationDate(String boardExpirationDate) {
+        this.boardExpirationDate = boardExpirationDate;
+    }
+
+    public String getBoardInspector() {
+        return boardInspector;
+    }
+
+    public void setBoardInspector(String boardInspector) {
+        this.boardInspector = boardInspector;
     }
 
     protected PackageModel(Parcel in) {
@@ -83,6 +101,8 @@ public class PackageModel implements Parcelable {
         packageParachuteOpenerExpirationDate = in.readString();
         packageExpirationDate = in.readString();
         packageInspector = in.readString();
+        boardExpirationDate = in.readString();
+        boardInspector = in.readString();
         packageParachuteExpirationDateHeavy = in.createStringArrayList();
         packageApproved = in.readByte() != 0;
     }
@@ -248,6 +268,8 @@ public class PackageModel implements Parcelable {
                 ", packageParachuteOpenerExpirationDate='" + packageParachuteOpenerExpirationDate + '\'' +
                 ", packageExpirationDate='" + packageExpirationDate + '\'' +
                 ", packageInspector='" + packageInspector + '\'' +
+                ", boardExpirationDate='" + boardExpirationDate + '\'' +
+                ", boardInspector='" + boardInspector + '\'' +
                 ", packageParachuteSerialNumberHeavy=" + packageParachuteSerialNumberHeavy +
                 ", packageParachuteExpirationDateHeavy=" + packageParachuteExpirationDateHeavy +
                 ", packageApproved=" + packageApproved +
@@ -269,6 +291,8 @@ public class PackageModel implements Parcelable {
         parcel.writeString(packageParachuteOpenerExpirationDate);
         parcel.writeString(packageExpirationDate);
         parcel.writeString(packageInspector);
+        parcel.writeString(boardExpirationDate);
+        parcel.writeString(boardInspector);
         parcel.writeStringList(packageParachuteExpirationDateHeavy);
         parcel.writeByte((byte) (packageApproved ? 1 : 0));
     }

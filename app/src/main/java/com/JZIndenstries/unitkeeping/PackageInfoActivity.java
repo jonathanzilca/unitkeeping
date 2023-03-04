@@ -1,8 +1,6 @@
 package com.JZIndenstries.unitkeeping;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.core.content.ContextCompat;
 
 import android.annotation.SuppressLint;
@@ -35,18 +33,9 @@ import android.widget.Toast;
 //import java.text.DateFormat;
 //import java.text.SimpleDateFormat;
 //import java.util.Date;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.database.FirebaseDatabase;
 
-import org.w3c.dom.Node;
-
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.Locale;
 
 public class PackageInfoActivity extends AppCompatActivity {
@@ -149,10 +138,10 @@ public class PackageInfoActivity extends AppCompatActivity {
         });
 
         //releaserExpirationDate.setText(dateToStringFormat(packageModel.getPackageReleaserExpirationDate()));
-        String[] packageType = {"א22", "טריוול", "כלוב", "רובד 8 רגל",
+        String[] packageType = {"א22", "טריוול", "כלוב", "פלציף","רובד 8 רגל",
                 "רובד 12 רגל", "רובד 16 רגל", "דו - שלבי (דוש)", "מנוהגת"};
-        String[] releaserType = {"FXC", "5000", "M1",
-                "M2", "ללא מנתק"};
+        String[] releaserType = {"FXC", "ללא מנתק", "5000", "M1",
+                "M2"};
         String[] openingStrap = {"3ft", "8ft", "20ft",
                 "40ft", "60ft"};
 
@@ -172,20 +161,23 @@ public class PackageInfoActivity extends AppCompatActivity {
             case "כלוב":
                 packageTypePosition = 2;
                 break;
-            case "רובד 8 רגל":
+            case "פלציף":
                 packageTypePosition = 3;
                 break;
-            case "רובד 12 רגל":
+            case "רובד 8 רגל":
                 packageTypePosition = 4;
                 break;
-            case "רובד 16 רגל":
+            case "רובד 12 רגל":
                 packageTypePosition = 5;
                 break;
-            case "דו - שלבי (דוש)":
+            case "רובד 16 רגל":
                 packageTypePosition = 6;
                 break;
-            case "מנוהגת":
+            case "דו - שלבי (דוש)":
                 packageTypePosition = 7;
+                break;
+            case "מנוהגת":
+                packageTypePosition = 8;
                 break;
         }
         spinner.setSelection(packageTypePosition);
@@ -200,16 +192,16 @@ public class PackageInfoActivity extends AppCompatActivity {
             case "FXC":
                 packageReleaserPosition = 0;
                 break;
-            case "5000":
+            case "ללא מנתק":
                 packageReleaserPosition = 1;
                 break;
-            case "M1":
+            case "5000":
                 packageReleaserPosition = 2;
                 break;
-            case "M2":
+            case "M1":
                 packageReleaserPosition = 3;
                 break;
-            case "Nati":
+            case "M2":
                 packageReleaserPosition = 4;
                 break;
         }
@@ -484,6 +476,8 @@ public class PackageInfoActivity extends AppCompatActivity {
             String Print = "";
             ArrayList<String> expirationDateString = new ArrayList<>();
             ArrayList<Integer> serialNumString = new ArrayList<>();
+            String BoardInspector = new String();
+            String BoardExperation = new String();
 
             for (int i = 0 ; i < serialNum.length-1; i++ ){
                 expirationDateString.add(expirationDate[i].getText().toString().trim());
@@ -552,7 +546,8 @@ public class PackageInfoActivity extends AppCompatActivity {
             case "FXC":
             case "ללא מנתק":
                 if (packageModel.getPackageType().contains("כלוב") && packageModel.getPackageWeight() > 280
-                    && packageModel.getPackageWeight() < 1041||
+                    && packageModel.getPackageWeight() < 1041|| packageModel.getPackageType().contains("פל") && packageModel.getPackageWeight() > 280
+                        && packageModel.getPackageWeight() < 1041||
                         packageModel.getPackageType().contains("22") && packageModel.getPackageWeight() > 280
                                 && packageModel.getPackageWeight() < 1041||
                         packageModel.getPackageType().contains("טריוול")&& packageModel.getPackageWeight() > 280
@@ -561,7 +556,8 @@ public class PackageInfoActivity extends AppCompatActivity {
                 }else{ return false;}
             case "5000":
                 if (packageModel.getPackageType().contains("כלוב") && packageModel.getPackageWeight() > 650
-                    && packageModel.getPackageWeight() < 1041||
+                    && packageModel.getPackageWeight() < 1041|| packageModel.getPackageType().contains("פל") && packageModel.getPackageWeight() > 650
+                        && packageModel.getPackageWeight() < 1041||
                         packageModel.getPackageType().contains("22") && packageModel.getPackageWeight() > 650
                                 && packageModel.getPackageWeight() < 1041 ||
                         packageModel.getPackageType().contains("טריוול") && packageModel.getPackageWeight() > 650
@@ -594,6 +590,7 @@ public class PackageInfoActivity extends AppCompatActivity {
         }
         return false;
     }
+
     private void parachuteAmountFun(int loop){
 
 
@@ -604,32 +601,37 @@ public class PackageInfoActivity extends AppCompatActivity {
         serialNum = new EditText[loop];
         expirationDate = new EditText[loop];
 
+        Drawable originalDrawable = releaserExpirationDate.getBackground();
+
+        LinearLayout layoutParachute = (LinearLayout) findViewById(R.id.layoutParachute);
+        LinearLayout layoutDate = (LinearLayout) findViewById(R.id.layoutParachuteDate);
+
+        LinearLayout.LayoutParams mRparams = new LinearLayout.LayoutParams(448, ViewGroup.LayoutParams.WRAP_CONTENT);
+        LinearLayout.LayoutParams mRparams1 = new LinearLayout.LayoutParams(448, ViewGroup.LayoutParams.WRAP_CONTENT);
 
         for (int i = 0; i < loop-1 ;i++){
-                LinearLayout layoutParachute = (LinearLayout) findViewById(R.id.layoutParachute);
-                LinearLayout layoutDate = (LinearLayout) findViewById(R.id.layoutParachuteDate);
 
-                LinearLayout.LayoutParams mRparams = new LinearLayout.LayoutParams(422, ViewGroup.LayoutParams.WRAP_CONTENT);
-                LinearLayout.LayoutParams mRparams1 = new LinearLayout.LayoutParams(422, ViewGroup.LayoutParams.WRAP_CONTENT);
-
-                serialNum[i] = new EditText(getApplicationContext());
+            serialNum[i] = new EditText(getApplicationContext());
                 mRparams.setMargins(10,20,10,0);
                 serialNum[i].setPadding(0,25,30,25);
                 serialNum[i].setLayoutParams(mRparams);
                 serialNum[i].setTextColor(Color.WHITE);
+                serialNum[i].setInputType(InputType.TYPE_CLASS_NUMBER);
                 serialNum[i].setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_numbers, 0);
+
 
                 expirationDate[i] = new EditText(getApplicationContext());
                 mRparams1.setMargins(10,20,14,0);
                 expirationDate[i].setPadding(0,25,27,25);
                 expirationDate[i].setLayoutParams(mRparams1);
                 expirationDate[i].setTextColor(Color.WHITE);
+                expirationDate[i].setInputType(InputType.TYPE_CLASS_NUMBER);
                 expirationDate[i].setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_btter_calander, 0);
                 layoutParachute.addView(serialNum[i]);
                 layoutDate.addView(expirationDate[i]);
 
             expirationDate[i].setHint("תאריך אריזה");
-            Drawable originalDrawable = releaserExpirationDate.getBackground();
+
             expirationDate[i].setBackgroundDrawable(originalDrawable);
             expirationDate[i].setHintTextColor(Color.WHITE);
             expirationDate[i].setInputType(InputType.TYPE_CLASS_NUMBER);
@@ -679,6 +681,57 @@ public class PackageInfoActivity extends AppCompatActivity {
                      expirationDate[i].setText(String.valueOf(m));
                 }
             }
+
+        EditText boardInspector = new EditText(getApplicationContext());
+        boardInspector.setPadding(0,25,30,25);
+        boardInspector.setLayoutParams(mRparams);
+        boardInspector.setTextColor(Color.WHITE);
+        boardInspector.setHintTextColor(Color.WHITE);
+        boardInspector.setBackgroundDrawable(originalDrawable);
+        boardInspector.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_inspector, 0);
+        boardInspector.setHint("מבקר רובד");
+        layoutParachute.addView(boardInspector);
+
+        EditText expirationInspection = new EditText(getApplicationContext());
+        expirationInspection.setPadding(0,25,30,25);
+        expirationInspection.setLayoutParams(mRparams1);
+        expirationInspection.setTextColor(Color.WHITE);
+        expirationInspection.setHintTextColor(Color.WHITE);
+        expirationInspection.setBackgroundDrawable(originalDrawable);
+        expirationInspection.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_inspector, 0);
+        expirationInspection.setHint("תאריך ביקורת");
+        layoutDate.addView(expirationInspection);
+
+        expirationInspection.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Calendar cal = Calendar.getInstance();
+                int year = cal.get(Calendar.YEAR);
+                int month = cal.get(Calendar.MONTH);
+                int day = cal.get(Calendar.DAY_OF_MONTH);
+
+                DatePickerDialog dialog = new DatePickerDialog(
+                        PackageInfoActivity.this,
+                        android.R.style.Theme_Holo_Light_Dialog_MinWidth,
+                        mDateSetListener4,
+                        year, month, day);
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                dialog.show();
+            }
+        });
+
+        mDateSetListener4 = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                month = month + 1;
+                Log.d("mDateSetListener", "onDateSet: mm/dd/yyy: " + month + "/" + day + "/" + year);
+
+                String date = day + "/" + month + "/" + year;
+                expirationInspection.setText(date);
+            }
+        };
+
+
 
     }
 
